@@ -15,30 +15,30 @@ void simple_swap(int *first, int *second)
 }
 
 /**
- * q_sort - sort a sub-array of integers using selection sort algorithm
+ * q_sort - sort a sub-array of integers using quick sort algorithm
  * @array: array of integers to order
  * @first: first index to sort
  * @last: last index to sort
  *
  * Return: void
  */
-void q_sort(int *array, int first,int last)
+void q_sort(int *array, int first, int last)
 {
 	int i, j, pivot, temp;
 
-	if(first < last)
+	if (first < last)
 	{
 		pivot = first;
 		i = first;
 		j = last;
 
-		while(i < j)
+		while (i < j)
 		{
-			while(array[i] <= array[pivot] && i < last)
+			while (array[i] <= array[pivot] && i < last)
 				i++;
-			while(array[j] > array[pivot])
+			while (array[j] > array[pivot])
 				j--;
-			if(i < j)
+			if (i < j)
 			{
 				temp = array[i];
 				array[i] = array[j];
@@ -55,7 +55,7 @@ void q_sort(int *array, int first,int last)
 }
 
 /**
- * selection_sort - sort an array of integers using selection sort algorithm
+ * quick_sort - sort an array of integers using quick sort algorithm
  * @array: array of integers to order
  * @size: size of the arrary
  *
