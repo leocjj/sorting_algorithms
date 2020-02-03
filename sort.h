@@ -36,8 +36,6 @@ void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void q_sort(int *array, int first, int last);
 
-
 void bubble_sort_back(int *array, size_t size);
-
 
 #endif /*SORT_H_ */
