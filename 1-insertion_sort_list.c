@@ -9,21 +9,21 @@
  */
 void double_swap(listint_t *A, listint_t *B)
 {
-    /* X - A - B - Y */
-    listint_t *X = NULL;
-    listint_t *Y = NULL;
+	/* X - A - B - Y */
+	listint_t *X = NULL;
+	listint_t *Y = NULL;
 
-    X = A->prev;
-    Y = B->next;
+	X = A->prev;
+	Y = B->next;
 
-    if(Y != NULL)
-        Y->prev = A;
-    B->prev = X;
-    A->prev = B;
-    if(X != NULL)
-        X->next = B;
-    B->next = A;
-    A->next = Y;
+	if (Y != NULL)
+		Y->prev = A;
+	B->prev = X;
+	A->prev = B;
+	if (X != NULL)
+		X->next = B;
+	B->next = A;
+	A->next = Y;
 }
 
 /**
@@ -34,26 +34,24 @@ void double_swap(listint_t *A, listint_t *B)
  */
 void insertion_sort_list(listint_t **list)
 {
-    listint_t *head = (*list)->next;
-    listint_t *temp  = head;
+	listint_t *head = (*list)->next;
+	listint_t *temp  = head;
 
-    if(list == NULL)
-        return;
-    if(*list == NULL)
-        return;
+	if (list == NULL)
+		return;
+	if (*list == NULL)
+		return;
 
-    while(temp != NULL)
-    {
-        head = temp;
-        /*while(head->next != NULL && (head->prev->n <= head->n))
-            head = head->next;*/
-        while(head->prev != NULL && (head->prev->n > head->n))
-        {
-            double_swap(head->prev, head);
-            if(head->prev == NULL)
-                *list = head;
-	    /* print_list(*list);*/
-        }
-        temp = temp->next;
-    }
+	while (temp != NULL)
+	{
+		head = temp;
+		while (head->prev != NULL && (head->prev->n > head->n))
+		{
+			double_swap(head->prev, head);
+			if (head->prev == NULL)
+				*list = head;
+			print_list(*list);
+		}
+		temp = temp->next;
+	}
 }
