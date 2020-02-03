@@ -34,16 +34,17 @@ void double_swap(listint_t *A, listint_t *B)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *head = (*list)->next;
-	listint_t *temp  = head;
+	listint_t *head;
+	listint_t *temp;
 
 	if (list == NULL)
 		return;
 	if (*list == NULL)
 		return;
-	
-	if (head == NULL)
+	if ((*list)->next == NULL)
 		return;
+
+	temp = head = (*list)->next;
 
 	while (temp != NULL)
 	{
