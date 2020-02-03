@@ -15,53 +15,70 @@ void simple_swap(int *first, int *second)
 }
 
 /**
- * q_sort - sort a sub-array of integers using quick sort algorithm
- * @array: array of integers to order
- * @first: first index to sort
- * @last: last index to sort
+ * partition - return the pivot index
+ * @a: array
+ * @l: low value (usually at index 0)
+ * @h: high value (usally at last index)
+ * @s: array size
+ *
+ * Return: pivot index
+ */
+int partition(int a[], int l, int h, size_t s)
+{
+	int pivot = a[h];
+	int i = (l - 1);
+	int j;
+
+	for (j = l; j < h; j++)
+	{
+		if (a[j] <= pivot)
+		{
+			i++;
+
+			if (i != j)
+			{
+				simple_swap(&a[i], &a[j]);
+				print_array(a, s);
+			}
+		}
+	}
+	if (i + 1 != h)
+	{
+		simple_swap(&a[i + 1], &a[h]);
+		print_array(a, s);
+	}
+	return (i + 1);
+}
+
+/**
+ * q_sort - Sort the items separately
+ * before and after the partition.
+ * @a: array
+ * @l: low value (usually at index 0)
+ * @h: high value (usally at last index)
+ * @s: array size
  *
  * Return: void
  */
-void q_sort(int *array, int first, int last)
+void q_sort(int a[], int l, int h, size_t s)
 {
-	int i, j, pivot, temp;
-
-	if (first < last)
+	if (l < h)
 	{
-		pivot = first;
-		i = first;
-		j = last;
+		int pv = partition(a, l, h, s);
 
-		while (i < j)
-		{
-			while (array[i] <= array[pivot] && i < last)
-				i++;
-			while (array[j] > array[pivot])
-				j--;
-			if (i < j)
-			{
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-			}
-		}
-
-		temp = array[pivot];
-		array[pivot] = array[j];
-		array[j] = temp;
-		q_sort(array, first, j - 1);
-		q_sort(array, j + 1, last);
+		q_sort(a, l, pv - 1, s);
+		q_sort(a, pv + 1, h, s);
 	}
 }
 
 /**
- * quick_sort - sort an array of integers using quick sort algorithm
- * @array: array of integers to order
- * @size: size of the arrary
+ * quick_sort - divide and conquer algorithm
+ * @array: array
+ * @size: array size
  *
  * Return: void
  */
 void quick_sort(int *array, size_t size)
 {
-	q_sort(array, 0, size - 1);
+	q_sort(array, 0, size - 1, size);
 }
